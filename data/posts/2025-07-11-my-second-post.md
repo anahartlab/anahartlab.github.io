@@ -1,10 +1,12 @@
-# My Second Post
-
-This is a new entry with **bold**, _italic_, and:
-
-- Lists
-- [Links](https://example.com)
-- Images:  
-  ![Example](https://anahartlab.github.io/images/example.jpg)
-
-<iframe src="https://www.youtube.com/embed/..." width="560" height="315" allowfullscreen></iframe>
+[
+  {
+    "title": "My First Post",
+    "date": "2025-07-10",
+    "file": "posts/2025-07-10-my-first-post.md"
+  },
+  {
+    "title": "My Second Post",
+    "date": "2025-07-11",
+    "file": "posts/2025-07-11-my-second-post.md"
+  }
+]

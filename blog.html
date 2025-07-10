@@ -90,32 +90,5 @@
       </div>
     </footer>
 
-    <!-- BLOG LOADER SCRIPT -->
-    <script>
-      fetch('data/posts.csv')
-        .then(response => response.text())
-        .then(csv => {
-          const data = Papa.parse(csv, { header: true }).data;
-          const container = document.getElementById('blog-container');
-          container.innerHTML = '';
-
-          data.forEach(post => {
-            const postElement = document.createElement('div');
-            postElement.className = 'u-container-style u-group u-post';
-            postElement.innerHTML = `
-              <div class="u-container-layout">
-                <h4>${post.title}</h4>
-                <div class="u-text u-text-grey-40" style="margin-bottom: 10px;">${post.date}</div>
-                <p class="u-text">${post.content}</p>
-              </div>
-            `;
-            container.appendChild(postElement);
-          });
-        })
-        .catch(error => {
-          document.getElementById('blog-container').innerText = 'Не удалось загрузить статьи.';
-          console.error(error);
-        });
-    </script>
   </body>
 </html>
