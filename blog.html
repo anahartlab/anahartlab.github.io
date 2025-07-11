@@ -1,35 +1,32 @@
 
-    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-    <script>
-      fetch('data/posts.json')
-        .then(response => response.json())
-        .then(posts => {
-          const container = document.getElementById('blog-container');
-          container.innerHTML = '';
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<script>
+  const posts = [
+    { title: "Owls of Ahvenkoski", date: "2025-07-10", file: "data/posts/2025-07-10-owls.md" },
+    { title: "My Second Post", date: "2025-07-11", file: "data/posts/2025-07-11-my-second-post.md" }
+  ];
 
-          posts.forEach(post => {
-            fetch('data/' + post.file)
-              .then(res => res.text())
-              .then(markdown => {
-                const htmlContent = marked.parse(markdown);
-                const postElement = document.createElement('div');
-                postElement.className = 'u-container-style u-group u-post';
-                postElement.innerHTML = `
-                  <div class="u-container-layout">
-                    <h4>${post.title}</h4>
-                    <div class="u-text u-text-grey-40" style="margin-bottom: 10px;">${post.date}</div>
-                    <div class="u-text">${htmlContent}</div>
-                  </div>
-                `;
-                container.appendChild(postElement);
-              });
-          });
-        })
-        .catch(error => {
-          document.getElementById('blog-container').innerText = 'Не удалось загрузить статьи.';
-          console.error(error);
-        });
-    </script>
+  const container = document.getElementById('blog-container');
+  container.innerHTML = '';
+
+  posts.forEach(post => {
+    fetch(post.file)
+      .then(res => res.text())
+      .then(markdown => {
+        const htmlContent = marked.parse(markdown);
+        const postElement = document.createElement('div');
+        postElement.className = 'u-container-style u-group u-post';
+        postElement.innerHTML = `
+          <div class="u-container-layout">
+            <h4>${post.title}</h4>
+            <div class="u-text u-text-grey-40" style="margin-bottom: 10px;">${post.date}</div>
+            <div class="u-text">${htmlContent}</div>
+          </div>
+        `;
+        container.appendChild(postElement);
+      });
+  });
+</script>
 <!DOCTYPE html>
 <html style="font-size: 16px;" lang="ru">
   <head>
