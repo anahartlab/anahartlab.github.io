@@ -1,0 +1,12 @@
+---
+title: "Start of making this site (continued)"
+date: "2025-06-28"
+---
+
+# Start of making this site (continued)
+
+_I started building this site on June 26 at 4:54 PM (Morocco time) using the Nicepage Desktop app, with help from ChatGPT to integrate it on github.io/anahartlab._
+
+**I decided to do this because I needed more independence from various platforms. In recent years, we’ve had trouble with sanctions, blocks, and restrictions affecting almost all of our resources.** So, we chose to create a new, self-hosted website on GitHub.io while also gaining new skills in web design and programming. We actively use ChatGPT and other cutting-edge tools in IT, graphics, music, and video editing — all combined with the classical knowledge we gained from university and different courses. That’s what actually made the process exciting. That’s also why I noted the exact time the site was created — June 26 at 4:54 PM (Morocco time). That was when we installed Nicepage, which we picked together with the AI to perfectly fit our needs.
+
+[BACK](NEWS.html#block-1)
