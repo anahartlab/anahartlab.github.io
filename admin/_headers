@@ -1,2 +1,0 @@
-/admin/*
-  Content-Security-Policy: script-src 'self' 'unsafe-eval' https://unpkg.com https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline';
