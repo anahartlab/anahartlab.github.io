@@ -103,7 +103,9 @@ with open(csv_path, newline="", encoding="utf-8") as csvfile:
                       <p class="u-align-left u-text u-text-2">{description}</p>
                       <h3 class="u-align-center-md u-align-center-sm u-align-center-xs u-align-left-lg u-align-left-xl u-text u-text-default-lg u-text-default-xl u-text-3">{price} ₽</h3>
                       <p class="u-align-left u-text u-text-availability">В наличии {stock} шт.</p>
-                      <a href="https://donate.stream/anahart" class="u-btn u-btn-round u-button-style u-custom-font u-heading-font u-hover-palette-1-light-1 u-palette-1-base u-radius u-btn-1" title="Укажите нужную сумму и наименование товара в комментарии к донату">Оплатить</a>
+                      <div class="u-align-center">
+                        <a href="https://donate.stream/anahart" class="u-btn u-button-style u-custom-font u-heading-font u-hover-palette-1-light-1 u-palette-1-base u-radius-50 u-btn-1" style="border-radius: 100px;" title="Укажите нужную сумму и наименование товара в комментарии к донату">Оплатить</a>
+                      </div>
                     </div>
                   </div>
                 </div>
