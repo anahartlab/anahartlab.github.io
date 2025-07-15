@@ -28,6 +28,8 @@ with open(csv_path, newline="", encoding="utf-8") as csvfile:
         name = row["Name"].strip()
         title = row["Title"].strip()
         description = row["Description"].strip()
+        price = row["Price"].strip()
+        stock = row["Stock"].strip()
         folder_path = os.path.join(images_dir, name)
 
         if not os.path.isdir(folder_path):
@@ -99,10 +101,9 @@ with open(csv_path, newline="", encoding="utf-8") as csvfile:
                     <div class="u-container-layout u-container-layout-2">
                       <h3 class="u-align-center u-text u-text-1">{title}</h3>
                       <p class="u-align-left u-text u-text-2">{description}</p>
-                      <h3 class="u-align-center-md u-align-center-sm u-align-center-xs u-align-left-lg u-align-left-xl u-text u-text-default-lg u-text-default-xl u-text-3">Цена по запросу</h3>
-                      <div class="u-align-center">
-                        <a href="https://donate.stream/anahart" class="u-btn u-btn-round u-button-style u-custom-font u-heading-font u-hover-palette-1-light-1 u-palette-1-base u-radius u-btn-1" title="Оплатить">Оплатить</a>
-                      </div>
+                      <h3 class="u-align-center-md u-align-center-sm u-align-center-xs u-align-left-lg u-align-left-xl u-text u-text-default-lg u-text-default-xl u-text-3">{price} ₽</h3>
+                      <p class="u-align-left u-text u-text-availability">В наличии {stock} шт.</p>
+                      <a href="https://donate.stream/anahart" class="u-btn u-btn-round u-button-style u-custom-font u-heading-font u-hover-palette-1-light-1 u-palette-1-base u-radius u-btn-1" title="Укажите нужную сумму и наименование товара в комментарии к донату">Оплатить</a>
                     </div>
                   </div>
                 </div>
@@ -121,7 +122,7 @@ with open(csv_path, newline="", encoding="utf-8") as csvfile:
 with open(html_path, "w", encoding="utf-8") as f:
     f.write(html_content)
 
-print("✅ Все товары из CSV добавлены в PSYWEAR.html")
+print("✅ Все товары из CSV добавлены в wear.html")
 import sys
 
 # === Установка рабочей директории (если скрипт запущен не из корня репозитория) ===
