@@ -65,10 +65,7 @@ with open(csv_path, newline="", encoding="utf-8") as csvfile:
                             <div class="u-back-slide">
                               <img class="u-back-image u-expanded" src="images/{name}/{img_name}">
                             </div>
-                            <div class="u-align-center u-over-slide u-shading u-valign-bottom u-over-slide-{i+1}">
-                              <h3 class="u-gallery-heading">Пример заголовка</h3>
-                              <p class="u-gallery-text">Пример текста</p>
-                            </div>
+                            <div class="u-align-center u-over-slide u-shading u-valign-bottom u-over-slide-{i+1}"></div>
                             <style data-mode="XL"></style>
                             <style data-mode="LG"></style>
                             <style data-mode="MD"></style>
