@@ -41,6 +41,16 @@ with open(csv_path, newline="", encoding="utf-8") as csvfile:
             print(f"⚠️  Пропущен '{name}' — нет изображений.")
             continue
 
+        # Удаление существующего блока по id="{name}"
+        start_tag = f'<section class="u-clearfix u-section-16" id="{name}">'
+        end_tag = '</section>'
+        start_pos = html_content.find(start_tag)
+        if start_pos != -1:
+            end_pos = html_content.find(end_tag, start_pos)
+            if end_pos != -1:
+                html_content = html_content[:start_pos] + html_content[end_pos + len(end_tag):]
+                insert_index = html_content.lower().find("<footer")
+
         carousel_id = f"carousel-{name[:8]}"
         carousel_indicators = ""
         carousel_items = ""
@@ -102,7 +112,7 @@ with open(csv_path, newline="", encoding="utf-8") as csvfile:
                       <h3 class="u-align-center u-text u-text-1">{title}</h3>
                       <p class="u-align-left u-text u-text-2">{description}</p>
                       <h3 class="u-align-center-md u-align-center-sm u-align-center-xs u-align-left-lg u-align-left-xl u-text u-text-default-lg u-text-default-xl u-text-3">{price} ₽</h3>
-                      <p class="u-align-left u-text u-text-availability">В наличии {stock} шт.</p>
+                      <p class="u-align-center u-text u-text-availability">В наличии {stock} шт.</p>
                       <div class="u-align-center">
                         <a href="https://donate.stream/anahart" class="u-btn u-button-style u-custom-font u-heading-font u-hover-palette-1-light-1 u-palette-1-base u-radius-50 u-btn-1" style="border-radius: 100px;" title="Укажите нужную сумму и наименование товара в комментарии к донату">Оплатить</a>
                       </div>
