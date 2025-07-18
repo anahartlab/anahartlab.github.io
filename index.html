@@ -103,7 +103,18 @@
         💬 Помощник ANAHART — задай вопрос
       </h2>
       <div class="iframe-container">
-        <iframe class="assistant-frame" src="https://anahart-assistant.onrender.com/assistant"></iframe>
+        <iframe class="assistant-frame" src="https://anahart-assistant.onrender.com/assistant" onerror="this.style.display='none'; document.getElementById('assistant-fallback').style.display='block';"></iframe>
+        <div id="assistant-fallback" style="display: none; text-align: center; padding: 30px; background: white; border: 1px solid #ccc; border-radius: 12px; max-width: 700px; margin: 0 auto;">
+          <p style="font-size: 1.1rem;">
+            ⚠️ В связи с большой загрузкой ИИ, время ожидания ответа может быть увеличено.<br><br>
+            Вы можете самостоятельно посмотреть товары:
+          </p>
+          <ul style="list-style: none; padding-left: 0; font-size: 1rem;">
+            <li>🌀 <a href="https://anahartlab.github.io/wear.html" target="_blank">Одежда и аксессуары</a></li>
+            <li>🌀 <a href="https://anahartlab.github.io/tapestries/instock.html" target="_blank">Флуоресцентные полотна</a></li>
+            <li>💬 <a href="https://t.me/anahart" target="_blank">Написать художнику в Telegram</a></li>
+          </ul>
+        </div>
       </div>
     </div>
   </section>
