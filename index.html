@@ -234,9 +234,9 @@
     messages.innerHTML += '<div><b>Вы:</b> ' + userText + '</div>';
     input.value = '';
     const response = await fetch('https://anahart-assistant.onrender.com/api/chat', {
-      method: 'POST',
-      headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify({ message: userText })
+  method: 'POST',
+  headers: {'Content-Type': 'application/json'},
+  body: JSON.stringify({ message: userText })
     });
     const data = await response.json();
     messages.innerHTML += '<div><b>Бот:</b> ' + data.reply + '</div>';
