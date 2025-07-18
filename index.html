@@ -27,7 +27,23 @@
     <meta property="og:title" content="main">
     <meta property="og:description" content="Визионерское искусство, спецэффекты танца Света и Цвета. Иллюзия восприятия, обман зрения, иллюзион.">
     <meta property="og:type" content="website">
-  <meta data-intl-tel-input-cdn-path="intlTelInput/"></head>
+  <meta data-intl-tel-input-cdn-path="intlTelInput/">
+  <style>
+    .iframe-container {
+      display: flex;
+      justify-content: center;
+    }
+
+    iframe.assistant-frame {
+      width: 100%;
+      max-width: 700px;
+      height: 600px;
+      border: 1px solid #ccc;
+      border-radius: 12px;
+      background: white;
+    }
+  </style>
+  </head>
   <body data-home-page="main.html" data-home-page-title="main" data-path-to-root="./" data-include-products="true" class="u-body u-xl-mode" data-lang="ru"><header class="u-clearfix u-grey-80 u-header u-header" id="header">
   <div class="u-clearfix u-sheet u-valign-middle-lg u-valign-middle-md u-valign-middle-sm u-sheet-1">
     <a href="https://anahartlab.github.io/" class="u-image u-logo u-image-1" data-image-width="1574" data-image-height="483">
@@ -81,6 +97,16 @@
     </nav>
   </div>
 </header>
+  <section class="u-clearfix u-section-assistant" style="padding: 60px 0; background-color: #f2f2f2;">
+    <div class="u-clearfix u-sheet u-valign-middle u-sheet-1">
+      <h2 class="u-align-center u-text u-text-1" style="font-size: 2rem; margin-bottom: 30px;">
+        💬 Помощник ANAHART — задай вопрос
+      </h2>
+      <div class="iframe-container">
+        <iframe class="assistant-frame" src="https://anahart-assistant.onrender.com/assistant"></iframe>
+      </div>
+    </div>
+  </section>
     <section class="u-clearfix u-section-1" id="block-1" data-image-width="1280" data-image-height="1280">
       <div class="u-clearfix u-sheet u-valign-middle u-sheet-1">
         <p class="u-align-left u-text u-text-1"> &nbsp; &nbsp;&nbsp;<b>Добро пожаловать в&nbsp;</b><b>ANAHART</b><b>&nbsp;— пространство цвета и света.&nbsp;<br>&nbsp; &nbsp; Мастерская дизайна, иллюстрации и анимации в сети, а также живописи и рукоделия от руки.</b>
@@ -146,14 +172,4 @@
       </div></footer>
   
 </header>
-  <section class="u-clearfix u-section-assistant" style="padding: 60px 0; background-color: #f2f2f2;">
-    <div class="u-clearfix u-sheet u-valign-middle u-sheet-1">
-      <h2 class="u-align-center u-text u-text-1" style="font-size: 2rem; margin-bottom: 30px;">
-        💬 Помощник ANAHART — задай вопрос
-      </h2>
-      <iframe src="https://anahart-assistant.onrender.com/assistant"
-              style="width: 100%; max-width: 700px; height: 600px; border: 1px solid #ccc; margin: 0 auto; display: block; border-radius: 12px; background: white;">
-      </iframe>
-    </div>
-  </section>
 </body></html>
