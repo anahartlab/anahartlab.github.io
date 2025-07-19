@@ -6,10 +6,10 @@ BLOG_PATH = "blog.html"
 INSERT_MARKER = "<!-- blog-insert-point -->"
 
 # === Получение данных ===
-date_str = datetime.today().strftime("%Y-%m-%d")
+date_str = datetime.now().strftime("%Y-%m-%d %H:%M")
 
 title = input("Заголовок блока: ").strip()
-id_block = input("Короткое имя для id (например: festival-marocco): ").strip()
+id_block = input("Короткое имя для id: ").strip()
 
 print("Вставьте HTML-контент (завершите ввод двумя пустыми строками):")
 lines = []
@@ -18,6 +18,7 @@ while True:
     if line.strip() == "" and (len(lines) > 0 and lines[-1].strip() == ""):
         break
     lines.append(line)
+
 content_html = "\n".join(lines)
 
 # === Формирование секции ===
