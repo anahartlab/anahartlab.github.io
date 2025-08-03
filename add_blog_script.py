@@ -12,13 +12,16 @@ date_str = datetime.now().strftime("%Y-%m-%d %H:%M")
 title = input("Заголовок блока: ").strip()
 id_block = input("Короткое имя для id: ").strip()
 
-print("Вставьте HTML-контент (завершите ввод двумя пустыми строками):")
+print("Вставьте HTML-контент (завершите ввод EOF, Ctrl+D или Ctrl+Z):")
+# Для добавления изображений используйте обычный HTML-тег, например:
+# <img src=\"images/my-image.jpg\" alt=\"описание\" style=\"max-width:100%;\">
 lines = []
-while True:
-    line = input()
-    if line.strip() == "" and (len(lines) > 0 and lines[-1].strip() == ""):
-        break
-    lines.append(line)
+try:
+    while True:
+        line = input()
+        lines.append(line)
+except EOFError:
+    pass
 
 content_html = "\n".join(lines)
 
