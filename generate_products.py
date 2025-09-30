@@ -12,9 +12,16 @@ if not os.path.exists(html_path):
     print(f"❌ HTML-файл '{html_path}' не найден.")
     exit()
 
+
 # === Читаем текущий HTML ===
 with open(html_path, "r", encoding="utf-8") as f:
     html_content = f.read()
+
+# === Очистка секций между </header> и <footer> ===
+header_end = html_content.lower().find("</header>")
+footer_start = html_content.lower().find("<footer")
+if header_end != -1 and footer_start != -1 and header_end < footer_start:
+    html_content = html_content[:header_end+9] + html_content[footer_start:]
 
 insert_index = html_content.lower().find("<footer")
 if insert_index == -1:
@@ -109,7 +116,7 @@ with open(csv_path, newline="", encoding="utf-8") as csvfile:
                       <h3 class="u-align-center u-text u-text-1">{title}</h3>
                       <p class="u-align-left u-text u-text-2">{description}</p>
                       <h3 class="u-align-center-md u-align-center-sm u-align-center-xs u-align-left-lg u-align-left-xl u-text u-text-default-lg u-text-default-xl u-text-3">{price} ₽</h3>
-                      <p class="u-align-center u-text u-text-availability">В наличии {stock} шт.</p>
+                      <p class="u-align-center u-text u-text-availability">В наличии {stock} .</p>
                       <div class="u-align-center">
                         <a href="https://donate.stream/anahart" class="u-btn u-button-style u-custom-font u-heading-font u-hover-palette-1-light-1 u-palette-1-base u-radius-50 u-btn-1" style="border-radius: 100px;" title="Укажите нужную сумму и наименование товара в комментарии к донату">Оплатить</a>
                       </div>
