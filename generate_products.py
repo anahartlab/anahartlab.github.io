@@ -23,22 +23,14 @@ footer_start = html_content.lower().find("<footer")
 if header_end != -1 and footer_start != -1 and header_end < footer_start:
     html_content = html_content[:header_end+9] + html_content[footer_start:]
 
-# === Добавление навигационного меню в начало ===
-nav_menu = """
-<nav class="u-nav u-unstyled">
-  <ul class="u-unstyled">
-    <li><a href="#home">Главная</a></li>
-    <li><a href="#products">Товары</a></li>
-    <li><a href="#contacts">Контакты</a></li>
-  </ul>
-</nav>
-"""
-html_content = nav_menu + html_content
-
 insert_index = html_content.lower().find("<footer")
 if insert_index == -1:
     print("❌ Не найден <footer> в WEAR.html")
     exit()
+
+# === Подготовка структуры для навигации ===
+from collections import defaultdict
+nav_data = defaultdict(list)
 
 # === Читаем CSV ===
 with open(csv_path, newline="", encoding="utf-8") as csvfile:
@@ -50,6 +42,8 @@ with open(csv_path, newline="", encoding="utf-8") as csvfile:
         price = row["Price"].strip()
         stock = row["Stock"].strip()+row["Place"].strip()
         folder_path = os.path.join(images_dir, name)
+
+        nav_data[row["Place"].strip()].append((name, title))
 
         if not os.path.isdir(folder_path):
             print(f"⚠️  Пропущен '{name}' — папка '{folder_path}' не найдена.")
@@ -145,6 +139,16 @@ with open(csv_path, newline="", encoding="utf-8") as csvfile:
         # === Вставка перед <footer> ===
         html_content = html_content[:insert_index] + block + "\n" + html_content[insert_index:]
         insert_index += len(block)
+
+# === Добавление навигационного меню в начало ===
+nav_menu = "<nav class='u-nav u-unstyled'><ul class='u-unstyled'>"
+for place, items in nav_data.items():
+    nav_menu += f"<li>{place}<ul>"
+    for item_id, item_title in items:
+        nav_menu += f'<li><a href="#{item_id}">{item_title}</a></li>'
+    nav_menu += "</ul></li>"
+nav_menu += "</ul></nav>"
+html_content = nav_menu + html_content
 
 # === Сохраняем результат ===
 with open(html_path, "w", encoding="utf-8") as f:
