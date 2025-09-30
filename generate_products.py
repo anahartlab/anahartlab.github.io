@@ -23,6 +23,18 @@ footer_start = html_content.lower().find("<footer")
 if header_end != -1 and footer_start != -1 and header_end < footer_start:
     html_content = html_content[:header_end+9] + html_content[footer_start:]
 
+# === Добавление навигационного меню в начало ===
+nav_menu = """
+<nav class="u-nav u-unstyled">
+  <ul class="u-unstyled">
+    <li><a href="#home">Главная</a></li>
+    <li><a href="#products">Товары</a></li>
+    <li><a href="#contacts">Контакты</a></li>
+  </ul>
+</nav>
+"""
+html_content = nav_menu + html_content
+
 insert_index = html_content.lower().find("<footer")
 if insert_index == -1:
     print("❌ Не найден <footer> в WEAR.html")
