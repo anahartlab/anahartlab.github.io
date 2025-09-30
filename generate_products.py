@@ -29,7 +29,7 @@ with open(csv_path, newline="", encoding="utf-8") as csvfile:
         title = row["Title"].strip()
         description = row["Description"].strip()
         price = row["Price"].strip()
-        stock = row["Stock"].strip()
+        stock = row["Stock"].strip()+row["Place"].strip()
         folder_path = os.path.join(images_dir, name)
 
         if not os.path.isdir(folder_path):
