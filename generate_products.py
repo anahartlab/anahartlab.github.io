@@ -140,15 +140,20 @@ with open(csv_path, newline="", encoding="utf-8") as csvfile:
         html_content = html_content[:insert_index] + block + "\n" + html_content[insert_index:]
         insert_index += len(block)
 
-# === Добавление навигационного меню в начало ===
-nav_menu = "<nav class='u-nav u-unstyled'><ul class='u-unstyled'>"
+# === Добавление навигационного меню после </header> ===
+nav_menu = "<nav class='u-nav u-unstyled collapsible'><ul class='u-unstyled'>"
 for place, items in nav_data.items():
     nav_menu += f"<li>{place}<ul>"
     for item_id, item_title in items:
         nav_menu += f'<li><a href="#{item_id}">{item_title}</a></li>'
     nav_menu += "</ul></li>"
 nav_menu += "</ul></nav>"
-html_content = nav_menu + html_content
+
+header_end = html_content.lower().find("</header>")
+if header_end != -1:
+    html_content = html_content[:header_end+9] + nav_menu + html_content[header_end+9:]
+else:
+    html_content = nav_menu + html_content
 
 # === Сохраняем результат ===
 with open(html_path, "w", encoding="utf-8") as f:
