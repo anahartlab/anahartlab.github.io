@@ -141,7 +141,7 @@ with open(csv_path, newline="", encoding="utf-8") as csvfile:
         insert_index += len(block)
 
 # === Добавление навигационного меню после </header> ===
-nav_menu = "<nav class='u-nav u-unstyled collapsible'><ul class='u-unstyled'>"
+nav_menu = "<nav class='u-nav u-unstyled' style='display:flex; justify-content:center; margin:20px 0;'><ul class='u-unstyled' style='list-style:none; padding:0; display:flex; flex-wrap:wrap; gap:15px;'>"
 for place, items in nav_data.items():
     nav_menu += f"<li>{place}<ul>"
     for item_id, item_title in items:
