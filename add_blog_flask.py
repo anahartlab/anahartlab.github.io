@@ -41,6 +41,7 @@ label { font-weight: bold; }
 </html>
 """
 
+
 @app.route("/", methods=["GET", "POST"])
 def index():
     if request.method == "POST":
@@ -60,12 +61,12 @@ def index():
             html = html.replace(NAV_MARKER, NAV_MARKER + "\n      " + link_html)
 
         # --- Формируем новую секцию ---
-        section_html = f'''
+        section_html = f"""
 <section class="u-clearfix u-section-1" id="{id_block}">
   <h3>{title}</h3>
   {content_html}
 </section>
-'''
+"""
 
         if INSERT_MARKER not in html:
             return "❌ Маркер вставки записи не найден в файле блога.", 500
