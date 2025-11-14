@@ -27,7 +27,7 @@ label { font-weight: bold; }
 </head>
 <body>
 <h2>Добавить запись в блог</h2>
-<form method="POST">
+<form method="POST" enctype="multipart/form-data">
   <label>Заголовок:</label>
   <input type="text" name="title" required value="{{ title|default('') }}">
   
@@ -36,6 +36,9 @@ label { font-weight: bold; }
   
   <label>HTML-контент (можно писать HTML-теги):</label>
   <textarea name="content" required>{{ content|default('') }}</textarea>
+  
+  <label>Загрузить изображения (можно несколько):</label>
+  <input type="file" name="images" accept="image/*" multiple>
   
   <button type="submit" name="action" value="preview">Предпросмотр</button>
   <button type="submit" name="action" value="add">Добавить запись</button>
@@ -50,6 +53,10 @@ label { font-weight: bold; }
 </body>
 </html>
 """
+
+UPLOAD_FOLDER = "images/blog"
+os.makedirs(UPLOAD_FOLDER, exist_ok=True)
+app.config["UPLOAD_FOLDER"] = UPLOAD_FOLDER
 
 
 def convert_links(text):
@@ -96,10 +103,59 @@ def index():
             "ноября",
             "декабря",
         ]
-        date_str = f"{now.day:02d} {months[now.month-1]} {now.year} {now.hour:02d}:{now.minute:02d}"
+        date_str = now.strftime("%Y-%m-%d %H:%M")
 
-        # --- Преобразуем ссылки в контенте ---
-        content_html_converted = convert_links(content_html)
+        uploaded_files = request.files.getlist("images")
+        saved_img_tags = []
+        for file in uploaded_files:
+            if file and file.filename:
+                safe_name = file.filename.replace(" ", "_")
+                save_path = os.path.join(app.config["UPLOAD_FOLDER"], safe_name)
+                file.save(save_path)
+                saved_img_tags.append(f'<img src="images/blog/{safe_name}" alt="">')
+
+        # --- Обработка изображений для карусели ---
+        # Предполагается, что изображения в контенте имеют теги <img src="...">.
+        # Извлекаем все src изображений
+        content_html_converted = convert_links(content_html) + "<br>" + "".join(saved_img_tags)
+
+        img_srcs = re.findall(r'<img\s+[^>]*src="([^"]+)"', content_html_converted)
+
+        if len(img_srcs) == 1:
+            # Одна картинка - вывод без карусели
+            carousel_html = f'<img src="{img_srcs[0]}" alt="Image" style="max-width:100%;">'
+        elif len(img_srcs) > 1:
+            # Несколько картинок - карусель с индикаторами и стрелками
+            indicators = ''.join(
+                '<li data-target="#carouselExampleIndicators" data-slide-to="{}"{}></li>'.format(
+                    i, ' class="active"' if i == 0 else ''
+                ) for i in range(len(img_srcs))
+            )
+            items = ''.join(
+                '<div class="carousel-item{}"><img class="d-block w-100" src="{}" alt="Slide {}"></div>'.format(
+                    ' active' if i == 0 else '', src, i + 1
+                ) for i, src in enumerate(img_srcs)
+            )
+            carousel_html = f'''
+<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+  <ol class="carousel-indicators">
+    {indicators}
+  </ol>
+  <div class="carousel-inner">
+    {items}
+  </div>
+  <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+</div>
+'''
+        else:
+            carousel_html = ''
 
         # --- Формируем новую секцию ---
         section_html = f"""
@@ -110,6 +166,7 @@ def index():
     <p class="u-align-center u-text u-text-3">
       {content_html_converted}
     </p>
+    {carousel_html}
   </div>
 </section>
 """
