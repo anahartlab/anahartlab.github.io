@@ -1,9 +1,15 @@
 import os
 import csv
+import sys
+import random
+from bs4 import BeautifulSoup
+
+repo_root = os.path.dirname(os.path.abspath(__file__))
+os.chdir(repo_root)
 
 # === Параметры ===
 csv_path = "products.csv"
-html_path = "wear.html"
+html_path = "main.html"
 images_dir = "images"
 valid_exts = {".jpg", ".jpeg", ".png"}
 
@@ -12,51 +18,83 @@ if not os.path.exists(html_path):
     print(f"❌ HTML-файл '{html_path}' не найден.")
     exit()
 
-
 # === Читаем текущий HTML ===
 with open(html_path, "r", encoding="utf-8") as f:
     html_content = f.read()
 
-# === Очистка секций между </header> и <footer> ===
-header_end = html_content.lower().find("</header>")
-footer_start = html_content.lower().find("<footer")
-if header_end != -1 and footer_start != -1 and header_end < footer_start:
-    html_content = html_content[:header_end+9] + html_content[footer_start:]
+# === Парсим HTML для удаления навигации и секций ===
+soup = BeautifulSoup(html_content, "html.parser")
+
+# === Удаляем все существующие секции товаров ===
+start_tag_prefix = '<section class="u-clearfix u-section-16"'
+end_tag = '</section>'
+while True:
+    start_pos = html_content.find(start_tag_prefix)
+    if start_pos == -1:
+        break
+    end_pos = html_content.find(end_tag, start_pos)
+    if end_pos == -1:
+        break
+    html_content = html_content[:start_pos] + html_content[end_pos + len(end_tag):]
+
+# === Обновляем soup после удаления секций ===
+soup = BeautifulSoup(html_content, "html.parser")
+
+# === Удаляем все теги <nav> с классом "u-nav" ===
+for old_nav in soup.find_all("nav", class_="u-nav"):
+    old_nav.decompose()
+
+# === Удаляем кнопки с id="scroll-to-menu" ===
+for scroll_btn in soup.find_all(id="scroll-to-menu"):
+    scroll_btn.decompose()
+
+# === Обновляем html_content после удаления навигации и секций ===
+html_content = str(soup)
 
 insert_index = html_content.lower().find("<footer")
 if insert_index == -1:
-    print("❌ Не найден <footer> в WEAR.html")
+    print("❌ Не найден <footer> в main.html")
     exit()
-
-# === Подготовка структуры для навигации ===
-from collections import defaultdict
-nav_data = defaultdict(list)
 
 # === Читаем CSV ===
 with open(csv_path, newline="", encoding="utf-8") as csvfile:
-    reader = csv.DictReader(csvfile)
-    for row in reader:
-        name = row["Name"].strip()
-        title = row["Title"].strip()
-        description = row["Description"].strip()
-        price = row["Price"].strip()
-        stock = row["Stock"].strip()+row["Place"].strip()
-        folder_path = os.path.join(images_dir, name)
+    reader = csv.DictReader(csvfile, delimiter=',')
+    # normalize headers to lowercase
+    reader.fieldnames = [h.strip().lower() for h in reader.fieldnames]
 
-        nav_data[row["Place"].strip()].append((name, title))
+    for row in reader:
+        # normalize each key to lowercase
+        row = {k.strip().lower(): (v.strip() if v is not None else "") for k, v in row.items()}
+
+        name = row.get("name", "")
+        title = row.get("title", "")
+        description = row.get("description", "")
+        stock = row.get("stock", "")
+        price = row.get("price", "")
+        place = row.get("place", "")
+
+        if not name:
+            continue
+
+        folder_path = os.path.join(images_dir, name)
 
         if not os.path.isdir(folder_path):
             print(f"⚠️  Пропущен '{name}' — папка '{folder_path}' не найдена.")
             continue
 
-        images = [f for f in sorted(os.listdir(folder_path)) if os.path.splitext(f)[1].lower() in valid_exts]
-        if not images:
+        all_images = [f for f in sorted(os.listdir(folder_path))
+                      if os.path.isfile(os.path.join(folder_path, f)) and os.path.splitext(f)[1].lower() in valid_exts]
+        if not all_images:
             print(f"⚠️  Пропущен '{name}' — нет изображений.")
             continue
 
+        if len(all_images) > 5:
+            images = random.sample(all_images, 5)
+        else:
+            images = all_images
+
         # Удаление существующего блока по id="{name}"
         start_tag = f'<section class="u-clearfix u-section-16" id="{name}">'
-        end_tag = '</section>'
         start_pos = html_content.find(start_tag)
         if start_pos != -1:
             end_pos = html_content.find(end_tag, start_pos)
@@ -86,6 +124,19 @@ with open(csv_path, newline="", encoding="utf-8") as csvfile:
                             <style data-mode="XS"></style>
                           </div>'''
             carousel_items += item_div + "\n"
+
+        # Форматируем наличие с учетом Price и Place
+        if not stock.strip():
+            stock_html = "РАСПРОДАНО"
+        else:
+            stock_lines = [line.strip() for line in stock.splitlines() if line.strip()]
+            # для каждой строки наличия - выводим с ценой и местом
+            if stock_lines:
+                stock_html = "В наличии:<br>" + "<br>".join(
+                    f"☀️ {line} за {price} {place}." for line in stock_lines
+                )
+            else:
+                stock_html = "В наличии:"
 
         block = f"""
     <section class="u-clearfix u-section-16" id="{name}">
@@ -118,14 +169,11 @@ with open(csv_path, newline="", encoding="utf-8") as csvfile:
               <div class="u-size-30">
                 <div class="u-layout-col">
                   <div class="u-container-style u-layout-cell u-size-60 u-layout-cell-2">
-                    <div class="u-container-layout u-container-layout-2">
+                    <div style="display:flex; flex-direction:column; align-items:center;">
                       <h3 class="u-align-center u-text u-text-1">{title}</h3>
-                      <p class="u-align-left u-text u-text-2">{description}</p>
-                      <h3 class="u-align-center-md u-align-center-sm u-align-center-xs u-align-left-lg u-align-left-xl u-text u-text-default-lg u-text-default-xl u-text-3">{price} ₽</h3>
-                      <p class="u-align-center u-text u-text-availability">В наличии {stock} .</p>
-                      <div class="u-align-center">
-                        <a href="https://donate.stream/anahart" class="u-btn u-button-style u-custom-font u-heading-font u-hover-palette-1-light-1 u-palette-1-base u-radius-50 u-btn-1" style="border-radius: 100px;" title="Укажите нужную сумму и наименование товара в комментарии к донату">Оплатить</a>
-                      </div>
+                      <p class="u-align-left u-text u-text-2" style="display:inline-block; text-align:left; max-width:100%;">{description}</p>
+                      <p class="u-align-center u-text u-text-availability">{stock_html}</p>
+                      <a href="https://donate.stream/anahart" class="u-btn u-button-style u-custom-font u-heading-font u-hover-palette-1-light-1 u-palette-1-base u-radius-50 u-btn-1" style="border-radius: 100px;" title="Укажите нужную сумму и наименование товара в комментарии к донату">Оплатить</a>
                     </div>
                   </div>
                 </div>
@@ -140,26 +188,12 @@ with open(csv_path, newline="", encoding="utf-8") as csvfile:
         html_content = html_content[:insert_index] + block + "\n" + html_content[insert_index:]
         insert_index += len(block)
 
-# === Добавление навигационного меню после </header> ===
-nav_menu = "<nav class='u-nav u-unstyled' style='display:flex; justify-content:center; margin:20px 0;'><ul class='u-unstyled' style='list-style:none; padding:0; display:flex; flex-wrap:wrap; gap:15px;'>"
-for place, items in nav_data.items():
-    nav_menu += f"<li>{place}<ul>"
-    for item_id, item_title in items:
-        nav_menu += f'<li><a href="#{item_id}">{item_title}</a></li>'
-    nav_menu += "</ul></li>"
-nav_menu += "</ul></nav>"
-
-header_end = html_content.lower().find("</header>")
-if header_end != -1:
-    html_content = html_content[:header_end+9] + nav_menu + html_content[header_end+9:]
-else:
-    html_content = nav_menu + html_content
-
 # === Сохраняем результат ===
 with open(html_path, "w", encoding="utf-8") as f:
     f.write(html_content)
 
-print("✅ Все товары из CSV добавлены в wear.html")
+print("✅ Все товары из CSV добавлены в main.html")
+
 import sys
 
 # === Установка рабочей директории (если скрипт запущен не из корня репозитория) ===
