@@ -1,6 +1,7 @@
 # add_blog_flask.py
 from flask import Flask, request, render_template_string, redirect, url_for
 import os
+from datetime import datetime
 
 app = Flask(__name__)
 
@@ -60,11 +61,32 @@ def index():
             link_html = f'<a href="#{id_block}">{title}</a> | '
             html = html.replace(NAV_MARKER, NAV_MARKER + "\n      " + link_html)
 
-        # --- Формируем новую секцию ---
+        # --- Формируем дату и время ---
+        now = datetime.now()
+        months = [
+            "января",
+            "февраля",
+            "марта",
+            "апреля",
+            "мая",
+            "июня",
+            "июля",
+            "августа",
+            "сентября",
+            "октября",
+            "ноября",
+            "декабря",
+        ]
+        date_str = f"{now.day:02d} {months[now.month-1]} {now.year} {now.hour:02d}:{now.minute:02d}"
+
+        # --- Формируем новую секцию с нужными стилями ---
         section_html = f"""
 <section class="u-clearfix u-section-1" id="{id_block}">
-  <h3>{title}</h3>
-  {content_html}
+  <div class="u-clearfix u-sheet u-sheet-1">
+    <h5 class="u-align-left u-text u-text-1">{date_str}</h5>
+    <h3 class="u-align-center u-text u-text-2">{title}</h3>
+    <p class="u-align-center u-text u-text-3">{content_html}</p>
+  </div>
 </section>
 """
 
