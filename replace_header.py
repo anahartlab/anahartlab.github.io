@@ -21,10 +21,6 @@ GOOGLE_TRANSLATE_SNIPPET = """
 #google_translate_element {
     display: inline-block;
     text-align: center;
-    background: white;
-    border: 1px solid #ccc;
-    padding: 6px 10px;
-    border-radius: 5px;
     box-shadow: 0 2px 5px rgba(0,0,0,0.12);
     margin: 0 auto;
 }
@@ -35,7 +31,7 @@ GOOGLE_TRANSLATE_SNIPPET = """
     }
     #google_translate_element {
         padding: 4px 4vw;
-        font-size: 16px;
+        font-size: 8px;
     }
 }
 </style>
@@ -45,8 +41,8 @@ GOOGLE_TRANSLATE_SNIPPET = """
 <script type="text/javascript">
 function googleTranslateElementInit() {
   new google.translate.TranslateElement({
-    pageLanguage: 'en',
-    includedLanguages: 'ru,en,fr,de,es,pt',
+    pageLanguage: 'ru,en',
+    includedLanguages: 'ru,en,fr,de,es,pt,hi,ja',
     layout: google.translate.TranslateElement.InlineLayout.SIMPLE
   }, 'google_translate_element');
 }
