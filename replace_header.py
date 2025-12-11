@@ -42,7 +42,7 @@ GOOGLE_TRANSLATE_SNIPPET = """
 function googleTranslateElementInit() {
   new google.translate.TranslateElement({
     pageLanguage: 'ru,en',
-    includedLanguages: 'ru,en,fr,de,es,pt,hi,ja',
+    includedLanguages: 'ru,en,fr,de,es,pt,hi,ar',
     layout: google.translate.TranslateElement.InlineLayout.SIMPLE
   }, 'google_translate_element');
 }
