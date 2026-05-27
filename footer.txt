@@ -1,6 +1,22 @@
 <footer class="u-align-center u-clearfix u-container-align-center u-footer u-grey-80 u-footer" id="footer">
   <div class="u-clearfix u-sheet u-valign-middle-lg u-valign-middle-sm u-valign-middle-xs u-sheet-1">
 
+    <div style="margin-bottom:10px; text-align:center; width:100%;">
+      <span id="google_translate_element"></span>
+    </div>
+
+    <script type="text/javascript">
+      function googleTranslateElementInit() {
+        new google.translate.TranslateElement({
+          pageLanguage: 'ru',
+          includedLanguages: 'ru,en,fr,de,es,pt,ar',
+          layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+        }, 'google_translate_element');
+      }
+    </script>
+
+    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
     <!-- LINKS -->
     <p class="u-small-text u-text u-text-variant u-text-2">
       <a href="https://anahartlab.github.io/blog.html" class="u-text-palette-1-base">Blog</a>
@@ -16,70 +32,6 @@
       </a>
     </p>
 
-    <style>
-.gt-wrap {
-  display: inline-flex;
-  align-items: center;
-  position: relative;
-}
-
-.gt-btn {
-  background: rgba(0,0,0,0.35);
-  color: #fff;
-  padding: 2px 10px;
-  border-radius: 6px;
-  font-size: 12px;
-  cursor: pointer;
-  user-select: none;
-}
-
-#google_translate_element {
-  position: relative;
-}
-
-.goog-te-gadget {
-  color: transparent !important;
-}
-
-.goog-te-combo {
-  position: absolute;
-  left: 0;
-  top: 0;
-  opacity: 0;
-  width: 100px;
-  height: 100%;
-  cursor: pointer;
-}
-</style>
-    <!-- Google Translate -->
-    <script type="text/javascript">
-      function googleTranslateElementInit() {
-        new google.translate.TranslateElement({
-          pageLanguage: 'ru',
-          includedLanguages: 'ru,en,fr,de,es,pt,ar',
-          layout: google.translate.TranslateElement.InlineLayout.SIMPLE
-        }, 'google_translate_element');
-      }
-    </script>
-    <script>
-document.addEventListener("DOMContentLoaded", function () {
-  const btn = document.querySelector(".gt-btn");
-  const combo = document.querySelector(".goog-te-combo");
-
-  if (btn) {
-    btn.addEventListener("click", function () {
-      if (combo) {
-        combo.focus();
-        combo.click();
-      }
-    });
-  }
-});
-</script>
-
-    <script type="text/javascript"
-      src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
-
     <div class="u-shape u-shape-svg u-text-palette-1-base u-shape-1">
       <svg class="u-svg-link" viewBox="0 0 150 160">
         <use xlink:href="#svg-bbff"></use>
@@ -92,22 +44,6 @@ h43.6v-5.5H120c7.5,0,13.6-6.2,13.6-13.8c0-3.2-1.1-6.2-2.9-8.5c6.3-1.2,11.1-6.8,1
 C145.2,108.9,150,103.3,150,96.6z"></path>
       </svg>
     </div>
-
-    <div style="margin-top:12px;">
-      <span id="google_translate_element"></span>
-    </div>
-
-    <script type="text/javascript">
-      function googleTranslateElementInit() {
-        new google.translate.TranslateElement({
-          pageLanguage: 'ru',
-          includedLanguages: 'ru,en,fr,de,es,pt,ar',
-          layout: google.translate.TranslateElement.InlineLayout.SIMPLE
-        }, 'google_translate_element');
-      }
-    </script>
-
-    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
   </div>
 </footer>
