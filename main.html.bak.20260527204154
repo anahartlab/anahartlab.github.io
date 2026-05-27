@@ -74,13 +74,13 @@
   <header class="u-clearfix u-grey-80 u-header u-header" id="header">
   <div class="u-clearfix u-sheet u-valign-middle-lg u-valign-middle-md u-valign-middle-sm u-sheet-1">
     <!-- Логотип -->
-    <a href="https://anahartlab.github.io/main.html" class="u-image u-logo u-image-1" data-image-width="1574" data-image-height="483">
+    <a href="https://anahartlab.github.io/main.html" class="u-image u-logo u-image-1" style="display:block; margin:20px auto 0 auto;" data-image-width="1574" data-image-height="483">
       <img src="images/logoanahartclear.png" class="u-logo-image u-logo-image-1" title="Главная">
     </a>
     <!-- INSERT_TRANSLATE_HERE -->
 
     <!-- Меню -->
-    <nav class="u-menu u-menu-one-level u-offcanvas u-menu-1" role="navigation">
+    <nav class="u-menu u-menu-one-level u-offcanvas u-menu-1" role="navigation" style="margin-top:20px;">
       <div class="menu-collapse" style="font-size: 1.125rem; letter-spacing: 0px;">
         <a class="u-button-style u-custom-left-right-menu-spacing u-custom-padding-bottom u-custom-top-bottom-menu-spacing u-hamburger-link u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base"
           href="#" tabindex="-1" aria-label="Open menu" aria-controls="4922">
@@ -127,31 +127,33 @@
 </header>
 
   <section class="u-clearfix u-section-hero" style="padding: 30px 0; text-align: center;">
-    <h4 style="font-family: inherit; font-weight: bold; margin-bottom: 40px;">Флуоресцентные полотна и оригинальные
-      картины.</h4>
-
     <div class="sections-grid">
-
 
       <div class="section-card">
         <a href="https://anahartlab.github.io/originals/">
-          <b>Оригинальные картины</b>
+          <b>КАРТИНЫ</b>
         </a>
       </div>
 
       <div class="section-card">
-        <a href="https://anahartlab.github.io/tapestries/">
-          <b>Флуоресцентные полотна</b>
+        <a href="https://anahartlab.github.io/pics.html">
+          <b>ПОЛОТНА</b>
         </a>
       </div>
 
       <div class="section-card">
-        <a href="https://anahartlab.github.io/sale/">
-          <b>Мини полотна от 500р и со СКИДКАМИ.</b>
+        <a href="https://anahartlab.github.io/sale.html">
+          <b>СКИДКИ</b>
         </a>
       </div>
 
-    </div>
+      <div class="section-card">
+        <a href="https://anahartlab.github.io/maroc.html">
+          <b>СУМКИ</b>
+        </a>
+      </div>
+
+
   </section>
 
   <style>
@@ -164,9 +166,9 @@
     }
 
     .section-card {
-      width: 480px;
+      width: 280px;
       /* horizontal brick width */
-      height: 60px;
+      height: 50px;
       /* brick height updated */
       border: 1px solid #ccc;
       border-radius: 10px;

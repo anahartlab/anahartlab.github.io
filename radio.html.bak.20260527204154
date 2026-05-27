@@ -74,13 +74,13 @@
   <header class="u-clearfix u-grey-80 u-header u-header" id="header">
   <div class="u-clearfix u-sheet u-valign-middle-lg u-valign-middle-md u-valign-middle-sm u-sheet-1">
     <!-- Логотип -->
-    <a href="https://anahartlab.github.io/main.html" class="u-image u-logo u-image-1" data-image-width="1574" data-image-height="483">
+    <a href="https://anahartlab.github.io/main.html" class="u-image u-logo u-image-1" style="display:block; margin:20px auto 0 auto;" data-image-width="1574" data-image-height="483">
       <img src="images/logoanahartclear.png" class="u-logo-image u-logo-image-1" title="Главная">
     </a>
     <!-- INSERT_TRANSLATE_HERE -->
 
     <!-- Меню -->
-    <nav class="u-menu u-menu-one-level u-offcanvas u-menu-1" role="navigation">
+    <nav class="u-menu u-menu-one-level u-offcanvas u-menu-1" role="navigation" style="margin-top:20px;">
       <div class="menu-collapse" style="font-size: 1.125rem; letter-spacing: 0px;">
         <a class="u-button-style u-custom-left-right-menu-spacing u-custom-padding-bottom u-custom-top-bottom-menu-spacing u-hamburger-link u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base"
           href="#" tabindex="-1" aria-label="Open menu" aria-controls="4922">
@@ -127,29 +127,24 @@
 </header>
 
   <section class="u-clearfix u-section-hero" style="padding: 30px 0; text-align: center;">
-    <h4 style="font-family: inherit; font-weight: bold; margin-bottom: 40px;">Флуоресцентные полотна и оригинальные
-      картины.</h4>
+    <h4 style="font-family: inherit; font-weight: bold; margin-bottom: 40px;">Радио и блог.</h4>
 
     <div class="sections-grid">
 
-
       <div class="section-card">
-        <a href="https://anahartlab.github.io/originals/">
-          <b>Оригинальные картины</b>
+        <a href="https://anahartlab.github.io/radio/">
+          <b>RADIO ANAHART</b>
         </a>
       </div>
 
       <div class="section-card">
-        <a href="https://anahartlab.github.io/tapestries/">
-          <b>Флуоресцентные полотна</b>
+        <a href="https://anahartlab.github.io/blog.html">
+          <b>IT БЛОГ</b>
         </a>
       </div>
 
-      <div class="section-card">
-        <a href="https://anahartlab.github.io/sale/">
-          <b>Мини полотна от 500р и со СКИДКАМИ.</b>
-        </a>
-      </div>
+
+
 
     </div>
   </section>
@@ -189,26 +184,40 @@
       font-size: 16px;
     }
   </style>
-  <footer class="u-align-center u-clearfix u-container-align-center u-footer u-grey-80 u-footer" id="footer">
-    <div class="u-clearfix u-sheet u-valign-middle-lg u-valign-middle-sm u-valign-middle-xs u-sheet-1">
-      <p class="u-small-text u-text u-text-variant u-text-1">
-        <a class="u-active-none u-border-none u-btn u-button-link u-button-style u-custom-font u-heading-font u-hover-none u-none u-text-palette-1-base u-btn-1"
-          href="https://github.com/anahartlab" title="GirHub Profile Alex Anahart">This site created by Alex Anahart in
-          2025. </a>
-      </p>
-      <div class="u-shape u-shape-svg u-text-palette-1-base u-shape-1">
-        <svg class="u-svg-link" preserveaspectratio="none" style="" viewbox="0 0 150 160">
-          <use xlink:href="#svg-bbff"></use>
-        </svg>
-        <svg class="u-svg-content" id="svg-bbff" viewbox="0 0 150 160" x="0px" y="0px">
-          <path d="M150,96.6c0-6.9-3.8-10.1-7.4-11.7c2.9-2.5,4.7-6.3,4.7-10.4c0-7.6-6.1-13.8-13.6-13.8H94.5l2-9.4
-	c2.7-12.5,0.9-26.8,0.3-30.9C95.4,10.8,87,0,77.8,0h-0.7c-4.4,0-11.7,2.5-11.7,19.3c0,40.9-18.2,41.4-19.1,41.4l0,0h-2.7v-5.5H0V160
-	h43.6v-5.5H120c7.5,0,13.6-6.2,13.6-13.8c0-3.2-1.1-6.2-2.9-8.5c6.3-1.2,11.1-6.8,11.1-13.6c0-3.2-1.1-6.2-2.9-8.5
-	C145.2,108.9,150,103.3,150,96.6z"></path>
-        </svg>
-      </div>
+<footer class="u-align-center u-clearfix u-container-align-center u-footer u-grey-80 u-footer" id="footer">
+  <div class="u-clearfix u-sheet u-valign-middle-lg u-valign-middle-sm u-valign-middle-xs u-sheet-1">
+
+    <p class="u-small-text u-text u-text-variant u-text-1">
+      <a class="u-active-none u-border-none u-btn u-button-link u-button-style u-custom-font u-heading-font u-hover-none u-none u-text-palette-1-base u-btn-1"
+        href="https://github.com/anahartlab"
+        title="GitHub Profile Alex Anahart">
+        This site created by Alex Anahart in 2025.
+      </a>
+
+      <br>
+
+      <a class="u-active-none u-border-none u-btn u-button-link u-button-style u-custom-font u-hover-none u-none u-text-palette-1-base"
+        href="https://anahartlab.github.io/blog.html"
+        title="AI Vibe Coding Blog">
+        Read the AI Vibe Coding blog →
+      </a>
+    </p>
+
+    <div class="u-shape u-shape-svg u-text-palette-1-base u-shape-1">
+      <svg class="u-svg-link" preserveaspectratio="none" style="" viewbox="0 0 150 160">
+        <use xlink:href="#svg-bbff"></use>
+      </svg>
+
+      <svg class="u-svg-content" id="svg-bbff" viewbox="0 0 150 160" x="0px" y="0px">
+        <path d="M150,96.6c0-6.9-3.8-10.1-7.4-11.7c2.9-2.5,4.7-6.3,4.7-10.4c0-7.6-6.1-13.8-13.6-13.8H94.5l2-9.4
+c2.7-12.5,0.9-26.8,0.3-30.9C95.4,10.8,87,0,77.8,0h-0.7c-4.4,0-11.7,2.5-11.7,19.3c0,40.9-18.2,41.4-19.1,41.4l0,0h-2.7v-5.5H0V160
+h43.6v-5.5H120c7.5,0,13.6-6.2,13.6-13.8c0-3.2-1.1-6.2-2.9-8.5c6.3-1.2,11.1-6.8,11.1-13.6c0-3.2-1.1-6.2-2.9-8.5
+C145.2,108.9,150,103.3,150,96.6z"></path>
+      </svg>
     </div>
-  </footer>
+
+  </div>
+</footer>
 </body>
 
 </html>
