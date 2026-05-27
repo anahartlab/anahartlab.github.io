@@ -1,21 +1,21 @@
 <footer class="u-align-center u-clearfix u-container-align-center u-footer u-grey-80 u-footer" id="footer">
   <div class="u-clearfix u-sheet u-valign-middle-lg u-valign-middle-sm u-valign-middle-xs u-sheet-1">
 
-    <p class="u-small-text u-text u-text-variant u-text-1">
-      <a class="u-active-none u-border-none u-btn u-button-link u-button-style u-custom-font u-heading-font u-hover-none u-none u-text-palette-1-base u-btn-1"
-        href="https://github.com/anahartlab"
-        title="GitHub Profile Alex Anahart">
-        This site created by Alex Anahart in 2025.
-      </a>
-    </p>
-
     <!-- LINKS -->
     <p class="u-small-text u-text u-text-variant u-text-2">
       <a href="https://anahartlab.github.io/blog.html" class="u-text-palette-1-base">Blog</a>
       &nbsp;|&nbsp;
       <a href="https://anahartlab.github.io/radio/" class="u-text-palette-1-base">Radio</a>
       &nbsp;|&nbsp;
-      <span id="google_translate_element"></span>
+      Translator <span id="google_translate_element"></span>
+    </p>
+
+    <p class="u-small-text u-text u-text-variant u-text-1">
+      <a class="u-active-none u-border-none u-btn u-button-link u-button-style u-custom-font u-heading-font u-hover-none u-none u-text-palette-1-base u-btn-1"
+        href="https://github.com/anahartlab"
+        title="GitHub Profile Alex Anahart">
+        This site created by Alex Anahart in 2025.
+      </a>
     </p>
 
     <!-- Google Translate -->
